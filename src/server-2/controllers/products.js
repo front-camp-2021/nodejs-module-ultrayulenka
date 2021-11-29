@@ -1,13 +1,15 @@
 const fs = require("fs");
 const path = require("path");
 const paginate = require("../services/paginate");
+const filterProducts = require("../services/filterProducts");
 
 const pathToProducts = path.join(__dirname, '../db/products.json')
 
 const getAllProducts = (req, res) => {
     fs.readFile(pathToProducts, 'utf-8', (err, data) => {
         if(err) throw err;
-        const paginateProducts = paginate(JSON.parse(data))
+        const filteredProducts = filterProducts(JSON.parse(data), req);
+        const paginateProducts = paginate(filteredProducts);
         res.status(200).send(paginateProducts(req,res))
     })
 }
