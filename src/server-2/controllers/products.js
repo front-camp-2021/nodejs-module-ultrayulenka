@@ -47,9 +47,7 @@ const editProduct = (req, res) => {
     fs.readFile(pathToProducts, 'utf-8', (err, data) => {
         if(err) throw err;
         const products = JSON.parse(data);
-        const index = products.findIndex(existingProduct => {
-            return existingProduct.id === id
-        });
+        const index = products.findIndex(existingProduct => existingProduct.id === id);
 
         if(index < 0) {
             res.status(404).send('Not found');

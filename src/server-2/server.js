@@ -1,10 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+
 const home = require("./routes/home");
 const products = require("./routes/products");
 const categories = require("./routes/categories");
 const brands = require("./routes/brands");
+const wishlist = require("./routes/wishlist");
 
 const app = express();
 
@@ -18,6 +20,7 @@ app.use("/", home);
 app.use("/products", products);
 app.use("/categories", categories);
 app.use("/brands", brands);
+app.use("/wishlist", wishlist);
 
 app.listen(port, () => {
   console.log(`Server is running at port ${port}`);
