@@ -8,6 +8,8 @@ const categories = require("./routes/categories");
 const brands = require("./routes/brands");
 const wishlist = require("./routes/wishlist");
 
+const logUrl = require("./middlewares/logUrl");
+
 const app = express();
 
 const port = 3003; 
@@ -15,6 +17,7 @@ const port = 3003;
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(logUrl());
 
 app.use("/", home);
 app.use("/products", products);
